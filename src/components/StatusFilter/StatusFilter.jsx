@@ -15,9 +15,9 @@ export const StatusFilter = () => {
 
   return (
     <div className={css.wrap}>
-      <button onClick={() => handleFilterChange(statusFilters.all)} selected={filter===statusFilters.all}>Всі</button>
-      <button onClick={() => handleFilterChange(statusFilters.unchecked)} selected={filter===statusFilters.unchecked}>Не відмічені</button>
-      <button onClick={() => handleFilterChange(statusFilters.checked)} selected={filter===statusFilters.checked}>Відмічені</button>
+      <button onClick={() => handleFilterChange(statusFilters.all)}  className={`${css.btn} ${filter === statusFilters.all ? css.active : ''}`} >Всі</button>
+      <button onClick={() => handleFilterChange(statusFilters.unchecked)}  className={`${css.btn} ${filter === statusFilters.unchecked ? css.active : ''}`}>Не відмічені</button>
+      <button onClick={() => handleFilterChange(statusFilters.checked)}  className={`${css.btn} ${filter === statusFilters.checked ? css.active : ''}`}>Відмічені</button>
     </div>
   );
 };

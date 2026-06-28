@@ -4,3 +4,7 @@
 .wrap{
     margin-right: 50px;
 }
+.active{
+    background-color: white;
+    color: black;
+}

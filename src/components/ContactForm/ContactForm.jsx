@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contactsReducer";
+import toast, { Toaster } from "react-hot-toast";
 import css from "./ContactForm.module.css"
 
 export const ContactForm = () => {
@@ -11,11 +12,17 @@ export const ContactForm = () => {
     const form = event.target;
 
     const text = form.elements.text.value;
+    const isValid = text.length >= 4
     const number = form.elements.number.value;
-
+    
+    if (isValid){
     dispatch(addContact( text, number ));
-
+    toast.success('Додано новий контакт')
     form.reset();
+    } else{
+      toast.error("Недостатньо символів")
+      form.reset();
+    }
   };
 
   return (
@@ -35,6 +42,7 @@ export const ContactForm = () => {
 
       <button type="submit">Add Contact</button>
       </div>
+      <Toaster/>
     </form>
   );
 };
