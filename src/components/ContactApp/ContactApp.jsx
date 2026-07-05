@@ -1,5 +1,4 @@
 import { StatusFilter } from "../StatusFilter/StatusFilter";
-import css from "./ContactApp.module.css";
 
 export const ContactBar = () => {
   return (
