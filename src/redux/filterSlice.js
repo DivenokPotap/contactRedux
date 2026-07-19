@@ -22,7 +22,7 @@ export const { setStatusFilter } = filterSlice.actions;
 export const filtersReducer = filterSlice.reducer;
 
 const persistConfig = {
-  key: "contacts",
+  key: "filters",
   storage,
 };
 

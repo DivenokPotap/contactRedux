@@ -1,26 +1,26 @@
 import { useDispatch } from "react-redux";
-import { deleteContact, toggle } from "../../redux/contactsSlice";
 import css from "./Contact.module.css"
+import { fetchDeleteContacts, toggle } from "../../redux/contactOperations";
 
-export const Contact = ({contact}) => {
+export const Contact = ({ contact }) => {
     const dispatch = useDispatch()
-    const handleDelete = () =>{
-        dispatch(deleteContact(contact.id))
+    const handleDelete = (userId) =>{
+        dispatch(fetchDeleteContacts(userId))
     }
     const handleToggle = () =>{
-        dispatch(toggle(contact.id))
+        dispatch(toggle(contact))
     }
 
     return (
         <div className={css.contact}>
           <input
             type="checkbox"
-            checked={contact.checked}
+            checked={contact.checked || false}
             onChange={handleToggle}
           />
-          <p>{contact.text}</p>
+          <p>{contact.name}</p>
           <p>{contact.number}</p>
-          <button onClick={handleDelete}>
+          <button onClick={ () => handleDelete(contact.id)}>
             Видалити
           </button>
         </div>
