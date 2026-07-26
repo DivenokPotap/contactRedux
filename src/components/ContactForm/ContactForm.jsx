@@ -1,8 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import * as Yup from "yup";
 import toast, { Toaster } from "react-hot-toast";
+import * as Yup from "yup";
 import { fetchCreateContacts } from "../../redux/contactOperations";
+import { selectIsLoading } from "../../redux/selectors";
 
 const phoneRegex = /^[0-9\s()+-]+$/;
 
@@ -19,10 +20,13 @@ const addContactSchema = Yup.object().shape({
 export const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, {resetForm}) => {
-    dispatch(fetchCreateContacts({
-      ...values, checked: false
-    }));
+  const handleSubmit = (values, { resetForm }) => {
+    if (!values) {
+      toast.error("Введіть дані");
+      return
+    }
+
+    dispatch(fetchCreateContacts(values))
     resetForm();
   };
 
@@ -31,6 +35,7 @@ export const ContactForm = () => {
       initialValues={{
         name: "",
         number: "",
+        checked: false,
       }}
       onSubmit={handleSubmit}
       validationSchema={addContactSchema}
@@ -48,8 +53,13 @@ export const ContactForm = () => {
           <Field name="number" type="tel" />
           <ErrorMessage name="number" component="div" />
         </label>
+        <label htmlFor="status">
+          Статус
+          <Field type="checkbox" name="status" />
+        </label>
+
         
-        <button type="submit">Add Contact</button>
+        <button type="submit">Додай контакт</button>
         <Toaster />
         </Form>
     </Formik>

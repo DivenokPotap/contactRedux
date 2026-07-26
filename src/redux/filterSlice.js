@@ -1,30 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { statusFilters } from "./constance"
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/es/storage";
+import { createSlice } from "@reduxjs/toolkit";
 
-
-const filterInitialState = {
-    status: statusFilters.all
-}
-
-const filterSlice = createSlice({
-  name: "filter",
-  initialState: filterInitialState,
+const filtersSlice = createSlice({
+  name: "filters",
+  initialState: "",
   reducers: {
-    setStatusFilter(state, action) {
-      state.status = action.payload;
-    },
+    inputChangeFilter: (state, action) => action.payload,
   },
 });
-export const { setStatusFilter } = filterSlice.actions;
 
-export const filtersReducer = filterSlice.reducer;
-
-const persistConfig = {
-  key: "filters",
-  storage,
-};
-
-export const FiltersPersistedReducer = persistReducer(persistConfig,filterSlice.reducer);
-
+export const { inputChangeFilter } = filtersSlice.actions;
+export const filterReducer = filtersSlice.reducer;

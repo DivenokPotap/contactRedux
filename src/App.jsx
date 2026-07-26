@@ -7,6 +7,7 @@ import { ContactList } from './components/ContactList.jsx/ContactList'
 import { fetchContacts } from "./redux/contactOperations";
 
 function App() {
+  
   const dispatch = useDispatch();
 
   useEffect(() => {

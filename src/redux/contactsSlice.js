@@ -1,61 +1,46 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createEntityAdapter, createSelector, createSlice } from "@reduxjs/toolkit";
 import { fetchContacts, fetchCreateContacts , fetchDeleteContacts, toggle } from "./contactOperations";
+import { addGenericMatcher } from "./genericMatcher";
+import { selectFilters } from "./selectors";
 
-const handlePending = (state) => {
-  state.isLoading = true
-}
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.isError = action.payload;
-};
-  
+const contactsAdapter = createEntityAdapter({
+  sortComparer: (a,b) => a.name.localeCompare(b.name),
+})
+
 const contactSlice = createSlice({
   name: "contacts",
-  initialState: {
+  initialState: contactsAdapter.getInitialState({
     isLoading: false,
     isError: null,
-    items: [],
-  },
+  }),
   extraReducers: (builder) => {
     builder
-      .addCase(fetchContacts.pending, handlePending)
       .addCase(fetchContacts.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isError = null;
-        state.items = action.payload;
+        contactsAdapter.setAll(state, action.payload);
       })
-      .addCase(fetchContacts.rejected, handleRejected)
-
-      .addCase(fetchCreateContacts.pending, handlePending)
       .addCase(fetchCreateContacts.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isError = null;
-        state.items.push(action.payload);
+      contactsAdapter.addOne(state, action.payload);
       })
-      .addCase(fetchCreateContacts.rejected, handleRejected)
-
-      .addCase(fetchDeleteContacts.pending, handlePending)
       .addCase(fetchDeleteContacts.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isError = null;
-        state.items = state.items.filter(
-          (item) => item.id !== action.payload.id
-        );
+        contactsAdapter.removeOne(state, action.payload.id);
       })
-      .addCase(fetchDeleteContacts.rejected, handleRejected)
-      .addCase(toggle.pending, handlePending)
-      .addCase(toggle.rejected, handleRejected)
       .addCase(toggle.fulfilled, (state, action) => {
-        const index = state.items.findIndex(
-          (item) => item.id === action.payload.id
-        );
-        state.items[index] = action.payload;
-
-        state.isLoading = false;
-        state.isError = null;
+       contactsAdapter.upsertOne(state, action.payload);
       });
+    addGenericMatcher(builder)
   }
 });
-  
+
+export const { selectAll: selectContacts, selectById: selectContactById } = contactsAdapter.getSelectors((state) => state.contacts);
+export const selectVisibleAdapterContacts = createSelector(
+  [selectContacts, selectFilters],
+  (contacts, filters) => {
+    return {
+      contacts: contacts.filter((contact) => contact.name.toLowerCase().includes(filters.toLowerCase()),
+      ),
+      filters,
+    };
+  },
+);
 
 export const contactReducer = contactSlice.reducer
