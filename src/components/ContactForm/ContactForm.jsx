@@ -2,9 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import * as Yup from "yup";
-import { fetchCreateContacts } from "../../redux/contactOperations";
-import { selectIsLoading } from "../../redux/selectors";
-
+import { fetchCreateContacts } from "@/redux/contactOperations";
 const phoneRegex = /^[0-9\s()+-]+$/;
 
 const addContactSchema = Yup.object().shape({
@@ -53,9 +51,9 @@ export const ContactForm = () => {
           <Field name="number" type="tel" />
           <ErrorMessage name="number" component="div" />
         </label>
-        <label htmlFor="status">
+        <label htmlFor="checked">
           Статус
-          <Field type="checkbox" name="status" />
+          <Field type="checkbox" name="checked" />
         </label>
 
         

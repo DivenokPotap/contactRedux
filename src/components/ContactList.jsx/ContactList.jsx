@@ -16,9 +16,9 @@ export const ContactList = () => {
             ))}
         </ul>
 
-         {contacts.length === 0 && !isLoading && <p>Контакт не знайдено</p>}
+         {contacts.length === 0 && !isLoading && <p>Контакти не знайдено</p>}
 
-      {contacts.length === 0 && (
+      {contacts.length === 0 && filters.length !== 0 && (
         <p>
           Контакт за пошуком: <b>{filters}</b> не знайдений
         </p>
