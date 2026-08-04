@@ -16,13 +16,14 @@ export const ContactList = () => {
             ))}
         </ul>
 
-         {contacts.length === 0 && !isLoading && <p>Контакти не знайдено</p>}
+        <div className={css.check}>{contacts.length === 0 && !isLoading && <p>Контакти не знайдено</p>}
 
       {contacts.length === 0 && filters.length !== 0 && (
         <p>
           Контакт за пошуком: <b>{filters}</b> не знайдений
         </p>
-      )}
+          )}
+        </div> 
       </div>
     )
 }
