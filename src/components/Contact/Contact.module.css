@@ -1,6 +1,36 @@
 .contact{
     display: flex;
-    gap: 100px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
     margin-left: 200px;
     margin-top: 20px;
+    background-color: white;
+    width: 400px;
+    height: 60px;
+    padding-left: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    font-size: 25px;
+}
+.inputContact{
+    margin-top: 15px;
+}
+.CBTN{
+    margin-right: 20px;
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+}
+.CBTN:hover{
+    width: 140px;
+    height: 45px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }

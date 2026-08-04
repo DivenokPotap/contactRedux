@@ -3,17 +3,35 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import * as Yup from "yup";
 import { fetchCreateContacts } from "@/redux/contactOperations";
+import css from "./ContactForm.module.css";
+import styled from 'styled-components';
 const phoneRegex = /^[0-9\s()+-]+$/;
 
 const addContactSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, "Закоротко!")
     .max(70, "Задовго!")
-    .required("Імʼя обовʼязковий!"),
+    .required("Імʼя обовʼязкове!"),
   number: Yup.string()
     .matches(phoneRegex, "Неправильний формат")
     .required("Номер обовʼязковий!")
 })
+
+const StyledForm = styled(Form)`
+    display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto; 
+  font-size: 20px;
+  text-align: center;
+`
+const StyledField = styled(Field)`
+   margin-left: 40px
+`
+const StyledField2 = styled(Field)`
+   margin-left: 20px
+`
+
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -38,28 +56,25 @@ export const ContactForm = () => {
       onSubmit={handleSubmit}
       validationSchema={addContactSchema}
     >
-      <Form>
+      <StyledForm>
         <h2>Додайте контакт</h2>
         
-        <label htmlFor="name">
+        <label className={css.label} htmlFor="name">
           Імʼя
-          <Field name="name" type="text" />
+          <StyledField name="name" type="text" />
           <ErrorMessage name="name" component="div" />
         </label>
-         <label htmlFor="number">
+         <label className={css.label} htmlFor="number">
           Номер
-          <Field name="number" type="tel" />
+          <StyledField2 name="number" type="tel" />
           <ErrorMessage name="number" component="div" />
         </label>
-        <label htmlFor="checked">
-          Статус
-          <Field type="checkbox" name="checked" />
-        </label>
+
 
         
-        <button type="submit">Додай контакт</button>
+        <button className={css.BTN} type="submit">Додай контакт</button>
         <Toaster />
-        </Form>
+        </StyledForm>
     </Formik>
   );
 };

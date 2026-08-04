@@ -7,7 +7,7 @@ export const ContactList = () => {
     const { contacts, filters } = useSelector(selectVisibleAdapterContacts);
     const isLoading = useSelector(selectIsLoading);
     return (
-     <div>
+     <div className={css.wrap}>
         <ul className={css.list}>
             {contacts.map((contact) => (
                 <li key={contact.id}>

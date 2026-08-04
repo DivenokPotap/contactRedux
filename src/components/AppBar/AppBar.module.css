@@ -1,0 +1,31 @@
+.wrap{
+      display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  border-bottom: 4px solid;
+  border-color: white;
+}
+.LogOut{
+    display: flex;
+    margin-right: 50px;
+}
+
+.CBTN{
+    margin-top: 10px;
+    height: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 120px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    border: none;
+}
+.CBTN:hover{
+    width: 140px;
+    height: 45px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}

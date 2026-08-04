@@ -2,9 +2,20 @@
     margin-left: 50px;
 }
 .wrap{
-    margin-right: 50px;
+      display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto; 
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
-.active{
+.FBTN{
+    height: 30px;
+    width: 150px;
+    border-radius: 10px;
+}
+.FBTN.active{
     background-color: white;
     color: black;
 }

@@ -1,5 +1,5 @@
 import { createEntityAdapter, createSelector, createSlice } from "@reduxjs/toolkit";
-import { fetchContacts, fetchCreateContacts , fetchDeleteContacts, toggle } from "./contactOperations";
+import { fetchContacts, fetchCreateContacts , fetchDeleteContacts } from "./contactOperations";
 import { addGenericMatcher } from "./genericMatcher";
 import { selectFilters } from "./selectors";
 
@@ -24,9 +24,6 @@ const contactSlice = createSlice({
       .addCase(fetchDeleteContacts.fulfilled, (state, action) => {
         contactsAdapter.removeOne(state, action.payload.id);
       })
-      .addCase(toggle.fulfilled, (state, action) => {
-       contactsAdapter.upsertOne(state, action.payload);
-      });
     addGenericMatcher(builder)
   }
 });

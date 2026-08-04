@@ -15,3 +15,38 @@
     margin-left: 20px;
     height: 50px;
 }
+
+.BTN{
+    width: 200px;
+    height: 50px;
+    margin-left: 100px;
+    border: none;
+    margin-top: 30px;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+}
+.BTN:hover{
+    margin-left: 95px;
+    width: 220px;
+    height: 60px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+body{
+    background-color: rgb(40, 42, 50);
+    color: white;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+.label{
+    margin-top: 20px;
+}
+input{
+    width: 130px;
+    height: 20px;
+    border: none;
+    border-radius: 5px;
+}

@@ -16,10 +16,10 @@ export const StatusFilter = () => {
 
   return (
     <div className={css.wrap}>
-      <h2>Filter</h2>
+      <h2 className={css.H2}>Фільтр</h2>
       <form>
         <input type="text" value={filter} onChange={handleFilterChange} name="filter" />
-        <button type="button" onClick={handleReset} disabled={!filter}>Reset Filter</button>
+        <button type="button" className={css.FBTN} onClick={handleReset} disabled={!filter}>Скинути фільтр</button>
       </form>
     </div>
   );
