@@ -39,7 +39,7 @@ const StyledLink = styled(Link)`
 
 
 
-export const LoginForm = () => {
+const LoginForm = () => {
     const dispatch = useDispatch()
     const handleSubmit = (userData, { resetForm }) => {
     if (!userData) {
@@ -81,3 +81,5 @@ export const LoginForm = () => {
         </div>
     )
 }
+
+export default LoginForm;

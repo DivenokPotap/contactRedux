@@ -1,5 +1,5 @@
 import css from "./Home.module.css"
-export default function Home() {
+const Home = () => {
     return (
         <div>
             <h1 className={css.homeH1}>
@@ -8,3 +8,5 @@ export default function Home() {
         </div>
     )
 }
+
+export default Home;

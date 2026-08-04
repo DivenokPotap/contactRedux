@@ -42,7 +42,7 @@ const StyledField3 = styled(Field)`
 `
 
 
-export const RegisterForm = () => {
+const RegisterForm = () => {
   const dispatch = useDispatch()
   const handleSubmit = (userData, { resetForm }) => {
     if (!userData) {
@@ -87,3 +87,5 @@ export const RegisterForm = () => {
         </Formik>
     )
 }
+
+export default RegisterForm;

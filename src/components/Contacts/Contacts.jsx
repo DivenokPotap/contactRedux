@@ -4,7 +4,7 @@ import { ContactForm } from '../ContactForm/ContactForm'
 import { ContactList } from '../ContactList.jsx/ContactList'
 import { fetchContacts } from '../../redux/contactOperations';
 import { useEffect } from 'react';
-export const Contacts = () => {
+const Contacts = () => {
       const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,3 +18,5 @@ export const Contacts = () => {
         </div>
     )
 };
+
+export default Contacts;

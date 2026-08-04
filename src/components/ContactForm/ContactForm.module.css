@@ -33,14 +33,6 @@
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
 }
-body{
-    background-color: rgb(40, 42, 50);
-    color: white;
-}
-a{
-    color: white;
-    text-decoration: none;
-}
 .label{
     margin-top: 20px;
 }

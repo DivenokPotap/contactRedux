@@ -1,15 +1,21 @@
 import { Route, Routes } from "react-router";
-import { useEffect } from "react";
+import { useEffect, lazy } from "react";
 import { useDispatch } from "react-redux";
-import { Layout } from "./components/Layout";
-import Home from "./components/Home/Home";
-import { RegisterForm } from "./components/RegisterForm/RegisterForm";
-import { Contacts } from "./components/Contacts/Contacts";
-import { LoginForm } from "./components/LoginForm/LoginForm";
-import { useAuth } from "./redux/useAuth";
 import { fetchRefreshUser } from "./redux/authOperations";
+import { Layout } from "./components/Layout";
+import { useAuth } from "./redux/useAuth";
 import { RestrictedRoute } from "./components/RestrictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
+// import Home from "./components/Home/Home";
+// import { RegisterForm } from "./components/RegisterForm/RegisterForm";
+// import { Contacts } from "./components/Contacts/Contacts";
+// import { LoginForm } from "./components/LoginForm/LoginForm";
+import './App.css'
+
+const Home = lazy(() => import("./components/Home/Home"))
+const RegisterForm = lazy(() => import("./components/RegisterForm/RegisterForm"))
+const Contacts = lazy(() => import("./components/Contacts/Contacts"))
+const LoginForm = lazy(() => import("./components/LoginForm/LoginForm"))
 
 function App() {
   
