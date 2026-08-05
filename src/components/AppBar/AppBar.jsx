@@ -1,9 +1,12 @@
-import { useAuth } from "../../redux/useAuth";
+import { useAuth } from "../../redux/Auth/useAuth";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router";
-import { fetchLogOutUser } from "../../redux/authOperations";
+import { fetchLogOutUser } from "../../redux/Auth/authOperations";
 import styled from 'styled-components';
 import css from './AppBar.module.css'
+  const StyledNav = styled(NavLink)`
+  margin-left: 50px;
+`
 
 export const AppBar = () => {
   const dispatch = useDispatch();
@@ -13,13 +16,6 @@ export const AppBar = () => {
     dispatch(fetchLogOutUser());
     };
   
-  
-  const StyledNav = styled(NavLink)`
-  margin-left: 50px;
-`
-
-
-
   return (
     <div>
       <nav className={css.wrap}>

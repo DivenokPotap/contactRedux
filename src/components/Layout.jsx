@@ -1,4 +1,4 @@
-import { useAuth } from '../redux/useAuth';
+import { useAuth } from "../redux/Auth/useAuth";
 import { AppBar } from './AppBar/AppBar';
 import { AuthNavigation } from "./AuthNavigation/AuthNavigation";
 import { Outlet } from "react-router";

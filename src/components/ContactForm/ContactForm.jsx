@@ -2,7 +2,7 @@ import { useDispatch} from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import * as Yup from "yup";
-import { fetchCreateContacts } from "@/redux/contactOperations";
+import { fetchCreateContacts } from "../../redux/Contacts/contactOperations";
 import css from "./ContactForm.module.css";
 import styled from 'styled-components';
 const phoneRegex = /^[0-9\s()+-]+$/;

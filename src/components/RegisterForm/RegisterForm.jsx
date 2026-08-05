@@ -2,7 +2,7 @@ import { useDispatch,} from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import * as Yup from "yup";
-import { fetchSingUpUser } from "../../redux/authOperations";
+import { fetchSingUpUser } from "../../redux/Auth/authOperations";
 import styled from 'styled-components';
 import css from './Registerform.module.css'
 

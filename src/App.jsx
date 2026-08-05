@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router";
 import { useEffect, lazy } from "react";
 import { useDispatch } from "react-redux";
-import { fetchRefreshUser } from "./redux/authOperations";
+import { fetchRefreshUser } from "./redux/Auth/authOperations";
 import { Layout } from "./components/Layout";
-import { useAuth } from "./redux/useAuth";
+import { useAuth } from "./redux/Auth/useAuth";
 import { RestrictedRoute } from "./components/RestrictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
 // import Home from "./components/Home/Home";
