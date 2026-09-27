@@ -1,0 +1,1 @@
+import{a as e}from"./index-Dsn9nHva.js";var t={homeH1:`_homeH1_1nqnr_1`},n=e(),r=()=>(0,n.jsx)(`div`,{children:(0,n.jsx)(`h1`,{className:t.homeH1,children:`Вітаємо в контактній книжці!`})});export{r as default};
