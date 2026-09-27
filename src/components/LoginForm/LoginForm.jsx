@@ -1,11 +1,13 @@
-import { useDispatch,} from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import * as Yup from "yup";
-import { fetchLogInUser } from "../../redux/Auth/authOperations";
 import { Link } from "react-router";
 import styled from 'styled-components';
 import css from './LoginForm.module.css'
+import { setAuthToken } from "../../redux/Auth/authSlice";
+import { authApi, useSignInMutation } from "../../redux/Auth/authApi";
+import { setToken } from "../../services/api";
+import { useDispatch } from "react-redux";
 
 
 const LogInSchema = Yup.object().shape({
@@ -40,15 +42,19 @@ const StyledLink = styled(Link)`
 
 
 const LoginForm = () => {
-    const dispatch = useDispatch()
-    const handleSubmit = (userData, { resetForm }) => {
-    if (!userData) {
-      toast.error("Введіть дані");
-      return
+  const [signIn, { isLoading, isError }] = useSignInMutation();
+  const dispatch = useDispatch()
+  const handleSubmit = async (userData, { resetForm }) => {
+    
+      try {
+        const data = await signIn(userData).unwrap();
+        setToken(data.token);
+              
+        dispatch(setAuthToken(data.token))
+        resetForm()
+      } catch(error) {
+        toast.error("Введіть дані");
     }
-
-    dispatch(fetchLogInUser(userData))
-    resetForm();
      };
     
     return (

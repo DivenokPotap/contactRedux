@@ -1,18 +1,14 @@
 import { useDispatch } from "react-redux";
 import css from "./Contact.module.css"
-import { fetchDeleteContacts } from "../../redux/Contacts/contactOperations";
+import { useDeleteContactMutation } from "../../redux/Contacts/contactsApi";
 
 export const Contact = ({ contact }) => {
-    const dispatch = useDispatch()
-    const handleDelete = () =>
-        dispatch(fetchDeleteContacts(contact.id))
-    
-
+  const [deleteContact, {isLoading: isDeleting}] = useDeleteContactMutation()
     return (
         <div className={css.contact}>
           <p>{contact.name}</p>
           <p>{contact.number}</p>
-          <button className={css.CBTN} type="button" onClick={handleDelete}>
+          <button className={css.CBTN} type="button" onClick={() => deleteContact(contact.id)}>
             Видалити
           </button>
         </div>

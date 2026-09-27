@@ -1,10 +1,12 @@
-import { useDispatch,} from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import * as Yup from "yup";
-import { fetchSingUpUser } from "../../redux/Auth/authOperations";
+import {authApi, useLazyGetCurrentQuery, useSignUpMutation } from "../../redux/Auth/authApi";
 import styled from 'styled-components';
 import css from './Registerform.module.css'
+import { setToken } from "../../services/api";
+import { useDispatch } from "react-redux";
+import { setAuthToken } from "../../redux/Auth/authSlice";
 
 
 const SingUpSchema = Yup.object().shape({
@@ -43,16 +45,18 @@ const StyledField3 = styled(Field)`
 
 
 const RegisterForm = () => {
+  const [signUp, { isLoading, isError }] = useSignUpMutation();
   const dispatch = useDispatch()
-  const handleSubmit = (userData, { resetForm }) => {
-    if (!userData) {
-      toast.error("Введіть дані");
-      return
-    }
-
-    dispatch(fetchSingUpUser(userData))
-    resetForm();
-     };
+  const handleSubmit = async (userData, { resetForm }) => {
+    try {
+      const data = await signUp(userData).unwrap();
+      setToken(data.token);
+       dispatch(setAuthToken(data.token))
+      resetForm();
+      
+    } catch (error) {
+       toast.error("Введіть дані");
+    }};
     
     return (
         <Formik

@@ -1,14 +1,26 @@
 import { useSelector } from "react-redux";
-import { selectIsLoggedIn, selectIsRefresh, selectUser } from "./authSelectors";
+import { useGetCurrentQuery } from "./authApi";
+import { getToken } from "../../services/api";
 
 export const useAuth = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isRefreshing = useSelector(selectIsRefresh);
-  const user = useSelector(selectUser);
+  const reduxToken = useSelector((state) => state.auth.token);
+  const localToken = getToken();
+
+  const token = reduxToken || localToken;
+
+  const {
+    data: user,
+    isLoading,
+    isFetching,
+    isError,
+  } = useGetCurrentQuery(undefined, {
+    skip: !token,
+  });
 
   return {
-    isLoggedIn,
-    isRefreshing,
     user,
+    isLoggedIn: !!token && !!user,
+    isRefreshing: !!token && (isLoading || isFetching),
+    isError,
   };
 };

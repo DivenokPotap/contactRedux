@@ -1,10 +1,9 @@
-import { useDispatch} from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import * as Yup from "yup";
-import { fetchCreateContacts } from "../../redux/Contacts/contactOperations";
 import css from "./ContactForm.module.css";
 import styled from 'styled-components';
+import { useCreateContactMutation} from "../../redux/Contacts/contactsApi";
 const phoneRegex = /^[0-9\s()+-]+$/;
 
 const addContactSchema = Yup.object().shape({
@@ -34,17 +33,18 @@ const StyledField2 = styled(Field)`
 
 
 export const ContactForm = () => {
-  const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
-    if (!values) {
-      toast.error("Введіть дані");
-      return
+  const [createContact, { isLoading, isError }] = useCreateContactMutation();
+
+    const handleSubmit = async (values, { resetForm }) => {
+      try {
+        await createContact(values).unwrap();
+        resetForm()
+      } catch {
+        toast.error("Введіть дані");
     }
-
-    dispatch(fetchCreateContacts(values))
-    resetForm();
-  };
+     };
+    
 
   return (
     <Formik

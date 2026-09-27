@@ -1,24 +1,28 @@
 import { useSelector } from "react-redux"
 import { Contact } from "../Contact/Contact";
 import css from "./ContactList.module.css"
-import { selectVisibleAdapterContacts } from "../../redux/Contacts/contactsSlice";
-import { selectIsLoading } from "../../redux/selectors";
+import { useFetchContactsQuery } from "../../redux/Contacts/contactsApi";
+import { selectFilters } from "../../redux/selectors";
 export const ContactList = () => {
-    const { contacts, filters } = useSelector(selectVisibleAdapterContacts);
-    const isLoading = useSelector(selectIsLoading);
+     const { data: contacts = [], isLoading } = useFetchContactsQuery();
+  const filters = useSelector(selectFilters);
+
+  const visibleContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filters.toLowerCase())
+  );
     return (
      <div className={css.wrap}>
         <ul className={css.list}>
-            {contacts.map((contact) => (
+            {visibleContacts.map((contact) => (
                 <li key={contact.id}>
                     <Contact contact={contact}/>
                 </li>
             ))}
         </ul>
 
-        <div className={css.check}>{contacts.length === 0 && !isLoading && <p>Контакти не знайдено</p>}
+        <div className={css.check}>{visibleContacts.length === 0 && !isLoading && <p>Контакти не знайдено</p>}
 
-      {contacts.length === 0 && filters.length !== 0 && (
+      {visibleContacts.length === 0 && filters.length !== 0 && (
         <p>
           Контакт за пошуком: <b>{filters}</b> не знайдений
         </p>
