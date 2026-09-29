@@ -1,4 +1,4 @@
-import{a as e,c as t,d as n,o as r,p as i,s as a,u as o}from"./index-BbDV63o4.js";import{a as s,c,i as l,n as u,o as d,r as f,s as p,t as m}from"./index.esm-D8e5WMRq.js";var h={BTN:`_BTN_3bjlz_1`},g=e(),_=m().shape({email:u().min(2,`Закоротко!`).max(70,`Задовго!`).required(`Пошта обовʼязкова!`),password:u().required(`Пароль обовʼязковий!`)}),v=r(p)`
+import{a as e,c as t,d as n,o as r,p as i,s as a,u as o}from"./index-CC9LLXn_.js";import{a as s,c,i as l,n as u,o as d,r as f,s as p,t as m}from"./index.esm-1MCMwY_s.js";var h={BTN:`_BTN_3bjlz_1`},g=e(),_=m().shape({email:u().min(2,`Закоротко!`).max(70,`Задовго!`).required(`Пошта обовʼязкова!`),password:u().required(`Пароль обовʼязковий!`)}),v=r(p)`
     display: flex;
   flex-direction: column;
   max-width: 400px;
