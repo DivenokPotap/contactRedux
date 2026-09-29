@@ -7,10 +7,10 @@ import { BrowserRouter } from "react-router";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+ <BrowserRouter basename='/contactRedux'>
     <Provider store={store}>
-      <BrowserRouter>
         <App />
-      </BrowserRouter>
     </Provider>
+  </BrowserRouter>
   </StrictMode>,
 )
